@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Dashboard</title>
+    <link rel="stylesheet" href="DashboardStyle.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Teacher Dashboard</h1>
+        </header>
+        <main class="dashboard-content">
+            <div class="dashboard-grid">
+                <div class="dashboard-card" id="classInfo">
+                    <h2>Class Information</h2>
+                    <img src="images/teacher.png" alt="Teacher Info">
+                </div>
+
+                <div class="dashboard-card" id="updateTestInfo">
+                    <h2>Update Results</h2>
+                    <img src="images/Test.png" alt="Test Results">
+                </div>
+
+                <div class="dashboard-card" id="updateAttendanceInfo">
+                    <h2>Update Attendance</h2>
+                    <img src="images/attendance.png" alt="Attendance Info">
+                </div>
+            </div>
+        </main>
+    </div>
+    <!--Modals-->
+    <div id="classModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Class Timetable</h3>
+            <div id="timetableList">
+                <table class="timetable-table">
+                    <thead>
+                        <tr>
+                            <th>Day</th>
+                            <th>Time</th>
+                            <th>Subject</th>
+                            <th>Class</th>
+                        </tr>
+                    </thead>
+                    <tbody id="timetableBody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div id="updateTestModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Test Information</h2>
+            <p><strong>Student ID:</strong> <input type="text" name="test_studentID" required></p>
+            <p><strong>Test ID:</strong> <input type="text" name="test_testID" required></p>
+            <p><strong>Marks Obtained:</strong> <input type="text" name="test_marksObtained" required></p>
+            <button id="insertMarks" type="submit">Enter Marks</button>
+        </div>
+    </div>
+    <div id="updateAttendanceModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Update Attendance</h2>
+            <form id="updateAttendanceForm">
+                <div class="form-group">
+                    <label for="attendance_studentID"><strong>Student ID:</strong></label>
+                    <input type="text" id="attendance_studentID" name="attendance_studentID" required>
+                </div>
+                <div class="form-group">
+                    <label for="attendance_subjectID"><strong>Subject ID:</strong></label>
+                    <input type="text" id="attendance_subjectID" name="attendance_subjectID" required>
+                </div>
+                <div class="form-group">
+                    <label for="attendance_status"><strong>Status:</strong></label>
+                    <select id="attendance_status" name="attendance_status" required>
+                        <option value="present">Present</option>
+                        <option value="absent">Absent</option>
+                    </select>
+                </div>
+                <button type="submit" id="updateAttendanceBtn">Update Attendance</button>
+            </form>
+        </div>
+    </div>
+    <div id="toast" class="toast hidden"></div>
+    <script src="DashboardTeacherScript.js"></script>
+</body>
+</html>

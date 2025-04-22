@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administator Dashboard</title>
+    <link rel="stylesheet" href="DashboardStyle.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Administrator Dashboard</h1>
+        </header>
+        <main class="dashboard-content">
+            <div class="dashboard-grid">
+                <div class="dashboard-card" id="enrollStudent">
+                    <h2>Enroll Student</h2>
+                    <img src="images/Enrollment.png" alt="Enrollment Info">
+                </div>
+
+                <div class="dashboard-card" id="allotClasses">
+                    <h2>Create Test</h2>
+                    <img src="images/Test.png" alt="Test Info">
+                </div>
+
+                <div class="dashboard-card" id="libraryManagement">
+                    <h2>Library</h2>
+                    <img src="images/Library.png" alt="Library">
+                </div>
+
+                <div class="dashboard-card" id="updateInventory">
+                    <h2>Update Inventory</h2>
+                    <img src="images/Inventory.png" alt="Inventory Info">
+                </div>
+
+                <div class="dashboard-card" id="timetableManagement">
+                    <h2>Manage Timetable</h2>
+                    <img src="images/Teacher.png" alt="Timetable Management">
+                </div>
+            </div>
+        </main>
+    </div>
+
+<!-- Modals -->
+<div id="enrollStudentModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Enroll New Student</h2>
+
+        <form id="enrollStudentForm">
+            <label for="studentID">Student ID:</label>
+            <input type="text" name="enroll_studentID" placeholder="Enter student ID" required>
+
+            <label for="studentName">Name:</label>
+            <input type="text" name="enroll_studentName" placeholder="Enter student's name" required>
+
+            <label for="dob">Date of Birth:</label>
+            <input type="date" name="enroll_studentDOB" required>
+
+            <label for="gender">Gender:</label>
+            <select name="enroll_studentGender" required>
+                <option value="" disabled selected>Select gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+
+            <label for="password">Password:</label>
+            <input type="password" name="enroll_studentPass" placeholder="Enter password" required>
+
+            <label for="classID">Class ID:</label>
+            <input type="text" name="enroll_classID" placeholder="Enter class ID" required>
+
+            <button id="enrollButton">Enroll Student</button>
+        </form>
+    </div>
+</div>
+
+    <div class="modal" id="allotClassesModal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Create Test</h2>
+            <form id="createTestForm">
+                <div class="form-group">
+                    <label for="testName">Test Name:</label>
+                    <input type="text" id="testName" name="testName" required>
+                </div>
+                <div class="form-group">
+                    <label for="maxMarks">Maximum Marks:</label>
+                    <input type="number" id="maxMarks" name="maxMarks" min="1" required>
+                </div>
+                <div class="form-group">
+                    <label for="testDate">Test Date:</label>
+                    <input type="date" id="testDate" name="testDate" required>
+                </div>
+                <button type="submit" class="inventory-btn">Create Test</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" id="libraryManagementModal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Library Management</h2>
+            <div class="library-actions">
+                <button id="addBookBtn" class="inventory-btn">Add New Book</button>
+                <button id="removeBookBtn" class="inventory-btn">Remove Book</button>
+                <button id="issueBookBtn" class="inventory-btn">Issue Book</button>
+                <button id="returnBookBtn" class="inventory-btn">Return Book</button>
+                <button id="viewBooksBtn" class="inventory-btn">View Books</button>
+                <button id="viewIssuesBtn" class="inventory-btn">View Issues</button>
+            </div>
+
+            <!-- Add Book Form -->
+            <div id="addBookForm" class="inventory-form hidden">
+                <h3>Add New Book</h3>
+                <form id="addBookFormData">
+                    <input type="text" name="bookID" placeholder="Book ID" required>
+                    <input type="text" name="title" placeholder="Title" required>
+                    <input type="text" name="author" placeholder="Author" required>
+                    <input type="number" name="quantity" placeholder="Quantity" min="1" required>
+                    <button type="submit">Add Book</button>
+                </form>
+            </div>
+
+            <!-- Remove Book Form -->
+            <div id="removeBookForm" class="inventory-form hidden">
+                <h3>Remove Book</h3>
+                <form id="removeBookFormData">
+                    <input type="text" name="bookID" placeholder="Book ID" required>
+                    <button type="submit">Remove Book</button>
+                </form>
+            </div>
+
+            <!-- Issue Book Form -->
+            <div id="issueBookForm" class="inventory-form hidden">
+                <h3>Issue Book</h3>
+                <form id="issueBookFormData">
+                    <input type="text" name="studentID" placeholder="Student ID" required>
+                    <input type="text" name="bookID" placeholder="Book ID" required>
+                    <button type="submit">Issue Book</button>
+                </form>
+            </div>
+
+            <!-- Return Book Form -->
+            <div id="returnBookForm" class="inventory-form hidden">
+                <h3>Return Book</h3>
+                <form id="returnBookFormData">
+                    <input type="text" name="studentID" placeholder="Student ID" required>
+                    <input type="text" name="bookID" placeholder="Book ID" required>
+                    <button type="submit">Return Book</button>
+                </form>
+            </div>
+
+            <!-- View Books List -->
+            <div id="viewBooksList" class="inventory-list hidden">
+                <h3>Available Books</h3>
+                <div id="booksList"></div>
+            </div>
+
+            <!-- View Issues List -->
+            <div id="viewIssuesList" class="inventory-list hidden">
+                <h3>Book Issues</h3>
+                <div id="issuesList"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="updateInventoryModal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Inventory Management</h2>
+            <div class="inventory-actions">
+                <button id="addItemBtn" class="inventory-btn">Add New Item</button>
+                <button id="viewItemsBtn" class="inventory-btn">View Inventory</button>
+                <button id="updateItemBtn" class="inventory-btn">Update Item</button>
+            </div>
+
+            <div id="addItemForm" class="inventory-form hidden">
+                <h3>Add New Item</h3>
+                <form id="addItemFormData">
+                    <input type="text" name="itemName" placeholder="Item Name" required>
+                    <input type="number" name="quantity" placeholder="Quantity" required>
+                    <button type="submit">Add Item</button>
+                </form>
+            </div>
+
+            <div id="viewItemsList" class="inventory-list hidden">
+                <h3>Inventory List</h3>
+                <div id="inventoryItems">
+
+                </div>
+            </div>
+
+            <div id="updateItemForm" class="inventory-form hidden">
+                <h3>Update Item</h3>
+                <form id="updateItemFormData">
+                    <input type="text" name="itemId" placeholder="Item ID" required>
+                    <input type="number" name="quantity" placeholder="Quantity" required>
+                    <button type="submit">Update Item</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="timetableManagementModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Timetable Management</h2>
+            <div class="timetable-actions">
+                <button id="addTimetableBtn" class="inventory-btn">Add Class</button>
+                <button id="updateTimetableBtn" class="inventory-btn">Update Class</button>
+                <button id="deleteTimetableBtn" class="inventory-btn">Delete Class</button>
+            </div>
+
+            <!-- Add Timetable Form -->
+            <div id="addTimetableForm" class="inventory-form hidden">
+                <h3>Add Class to Timetable</h3>
+                <form id="addTimetableFormData">
+                    <input type="text" name="teacherID" placeholder="Teacher ID" required>
+                    <input type="text" name="subjectID" placeholder="Subject ID" required>
+                    <input type="text" name="classID" placeholder="Class ID" required>
+                    <select name="dayOfWeek" required>
+                        <option value="" disabled selected>Select Day</option>
+                        <option value="Monday">Monday</option>
+                        <option value="Tuesday">Tuesday</option>
+                        <option value="Wednesday">Wednesday</option>
+                        <option value="Thursday">Thursday</option>
+                        <option value="Friday">Friday</option>
+                    </select>
+                    <input type="time" name="startTime" required>
+                    <input type="time" name="endTime" required>
+                    <button type="submit">Add Class</button>
+                </form>
+            </div>
+
+            <!-- Update Timetable Form -->
+            <div id="updateTimetableForm" class="inventory-form hidden">
+                <h3>Update Class in Timetable</h3>
+                <form id="updateTimetableFormData">
+                    <input type="text" name="timetableID" placeholder="Timetable ID" required>
+                    <input type="text" name="teacherID" placeholder="Teacher ID" required>
+                    <input type="text" name="subjectID" placeholder="Subject ID" required>
+                    <input type="text" name="classID" placeholder="Class ID" required>
+                    <select name="dayOfWeek" required>
+                        <option value="" disabled selected>Select Day</option>
+                        <option value="Monday">Monday</option>
+                        <option value="Tuesday">Tuesday</option>
+                        <option value="Wednesday">Wednesday</option>
+                        <option value="Thursday">Thursday</option>
+                        <option value="Friday">Friday</option>
+                    </select>
+                    <input type="time" name="startTime" required>
+                    <input type="time" name="endTime" required>
+                    <button type="submit">Update Class</button>
+                </form>
+            </div>
+
+            <!-- Delete Timetable Form -->
+            <div id="deleteTimetableForm" class="inventory-form hidden">
+                <h3>Delete Class from Timetable</h3>
+                <form id="deleteTimetableFormData">
+                    <input type="text" name="timetableID" placeholder="Timetable ID" required>
+                    <button type="submit">Delete Class</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast" class="toast hidden"></div>
+    <script src="DashboardAdminScript.js"></script>
+</body>
+</html>
