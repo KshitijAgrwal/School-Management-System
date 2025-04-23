@@ -1,0 +1,104 @@
+INSERT INTO Class VALUES(1,'CCE-A');
+INSERT INTO Class VALUES(2,'CCE-B');
+INSERT INTO Class VALUES(3,'IT-C');
+
+INSERT INTO Student VALUES (230953228, 'Kshitij', '2006-01-27', 'Male', 'KshitijHero',1);
+INSERT INTO Student VALUES (230953216, 'Shivanshu', '2003-11-11', 'Male', 'Shivanshu1234',1);
+INSERT INTO Student VALUES (230953560, 'Akshat', '2004-03-03', 'Male', 'Akshat1234',1);
+
+INSERT INTO Guardian(Name,Phone,Address,Email) VALUES ('Kshitij fthr',          '9988776655','Indirapuram','kshitijfthr@gmail.com');
+INSERT INTO Guardian(Name,Phone,Address,Email) VALUES ('Shivanshu mthr' , '5566778899','Jharkhand','shivanshumthr@gmail.com');
+INSERT INTO Guardian(Name,Phone,Address,Email) VALUES ('Guarder' , '1919292939','India','Guarder@gmail.com');
+INSERT INTO Guardian(Name,Phone,Address,Email) VALUES ('Akshat Brdr', '9090909090', 'Ranchi', 'akshatb@gmail.com');
+
+INSERT INTO Guardian_student VALUES(230953228, 1, 'Father');
+INSERT INTO Guardian_student VALUES(230953216, 2, 'Mother');
+INSERT INTO Guardian_student VALUES(230953228, 3, 'Elder Guardian');
+INSERT INTO Guardian_student VALUES(230953560, 4, 'Brother');
+
+INSERT INTO Test(Test_type, Date_Of_Test, Max_Marks) VALUES('DBMS Fisac-1', '2025-1-30',10);
+INSERT INTO Test(Test_type, Date_Of_Test, Max_Marks) VALUES('OS Fisac-1', '2025-1-31',10);
+
+INSERT INTO Student_Score VALUES(230953228,1,2.34);
+INSERT INTO Student_Score VALUES(230953228,2,3.45);
+
+INSERT INTO Subject(Subject_Name) VALUES("Database Management System");
+INSERT INTO Subject(Subject_Name) VALUES("Operating Systems");
+
+INSERT INTO Test_Subject VALUES(1,1);
+INSERT INTO Test_Subject VALUES(2,2);
+
+INSERT INTO Attendance VALUES(230953228,"1",32,26);
+INSERT INTO Attendance VALUES(230953228,"2",45,37);
+
+INSERT INTO Fees VALUES(1,230953228,'DBMS Course Fee',50000,'Pending','2025-5-1');
+INSERT INTO Fees VALUES(2,230953228,'Library Fee',5000,'Paid','2025-4-1');
+
+INSERT INTO Teacher VALUES(1,'Blob','1990-10-1','Blob@schoolmail.com','9988776655','Lert');
+INSERT INTO Teacher VALUES(2,'Lert','1990-1-10','Lert@schoolmail.com','5566778899','Blob');
+
+INSERT INTO Teacher_Subject VALUES(2,1);
+INSERT INTO Teacher_Subject values(1,2);
+
+INSERT INTO Teacher_Class VALUES(2,1);
+INSERT INTO Teacher_Class VALUES(2,3);
+INSERT INTO Teacher_Class VALUES(1,2);
+
+INSERT INTO Department VALUES(1,'ICT');
+INSERT INTO Department VALUES(2,'EE');
+
+Update subject SET dept_id = 1;
+
+INSERT INTO Classroom VALUES(1,101,100);
+INSERT INTO Classroom VALUES(2,102,90);
+INSERT INTO Classroom VALUES(3,103,95);
+
+INSERT INTO Classroom_Allotment VALUES(1,1);
+INSERT INTO Classroom_Allotment VALUES(2,3);
+INSERT INTO Classroom_Allotment VALUES(3,2);
+
+INSERT INTO Admin VALUES (1, 'Admin1', 'AdminFire@hidden.com', '9212921292', '1');
+INSERT INTO Admin VALUES (2, 'Admin2', 'AdminHater@hidden.com', '9911991191', 'hZyBiuYT97Bj');
+
+INSERT INTO Book VALUES (1,'The First Book', 'vorp', 10);
+INSERT INTO Book VALUES (2,'The Last Book?', 'tron', 5);
+
+INSERT INTO Book_Issue VALUES (230953228,1,'2025-1-1');
+INSERT INTO Book_Issue VALUES (230953228,2,'2025-1-4');
+
+INSERT INTO Inventory(Item_Name,Quantity) VALUES('Chalk Boxes',100);
+INSERT INTO Inventory(Item_Name,Quantity) VALUES('Marker',30);
+
+
+
+
+
+
+
+SET FOREIGN_KEY_CHECKS = 0;
+
+TRUNCATE TABLE Book_Issue;
+TRUNCATE TABLE Timetable;
+TRUNCATE TABLE Teacher_Salary;
+TRUNCATE TABLE Teacher_Subject;
+TRUNCATE TABLE Teacher_Class;
+TRUNCATE TABLE Classroom_Allotment;
+TRUNCATE TABLE Student_Score;
+TRUNCATE TABLE Attendance;
+TRUNCATE TABLE Fees;
+TRUNCATE TABLE Guardian_Student;
+
+TRUNCATE TABLE Inventory;
+TRUNCATE TABLE Book;
+TRUNCATE TABLE Admin;
+TRUNCATE TABLE Test;
+TRUNCATE TABLE Classroom;
+TRUNCATE TABLE Subject;
+TRUNCATE TABLE Department;
+TRUNCATE TABLE Guardian;
+TRUNCATE TABLE Student;
+TRUNCATE TABLE Teacher;
+TRUNCATE TABLE Class;
+
+SET FOREIGN_KEY_CHECKS = 1;
+
